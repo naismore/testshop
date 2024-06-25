@@ -22,7 +22,7 @@ class Product {
         title: json['title'] as String,
         price: (json['price'] as num).toDouble(),
         description: (json['productDescription'] as String) ?? '',
-        imageUrl: (json['imageUrl'] as String?) ?? '../images/placeholder.svg',
+        imageUrl: (json['imageUrl'] as String?) ?? 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg',
     );
   }
 }
