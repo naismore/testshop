@@ -8,11 +8,8 @@ class CategoryApi {
     final response = await Dio().get(
         'http://onlinestore.whitetigersoft.ru/api/common/category/list?appKey=EyZ6DhtHN24DjRJofNZ7BijpNsAZ-TT1is4WbJb9DB7m83rNQCZ7US0LyUg5FCP4eoyUZXmM1z45hY5fIC-JTCgmqHgnfcevkQQpmxi8biwwlSn0zZedvlNh0QkP1-Um');
     if (response!= null) {
-
       if (response.statusCode == 200) {
-
         final data = response?.data?['data']?['categories'] as List?;
-
         if (data != null) {
           return data.map((categoryJson) {
             print(categoryJson.toString());
@@ -21,21 +18,13 @@ class CategoryApi {
         } else {
           return null;
         }
-
       } else {
-
         print('Ошибка: ${response.statusCode}');
-
         return null;
-
       }
-
     } else {
-
       print('Ошибка: Нет ответа');
-
       return null;
-
     }
   }
 }

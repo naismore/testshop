@@ -43,8 +43,6 @@ class _GoodsListScreen extends State<GoodsListScreen> {
     );
   }
 
-
-
   Future<void> _loadGoodsByCategory(final int categoryId) async {
     _productList = await ProductApi().GetProductListByCategory(categoryId);
     setState(() {});
