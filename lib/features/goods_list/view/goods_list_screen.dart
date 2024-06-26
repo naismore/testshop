@@ -15,9 +15,13 @@ class _GoodsListScreen extends State<GoodsListScreen> {
   List<Product>? _productList;
 
   @override
-  void initState() {
-    _loadGoods();
-    super.initState();
+  void didChangeDependencies() {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    assert(args != null && args is int, '');
+    final categoryId = args as int;
+    _loadGoodsByCategory(categoryId);
+    setState(() {});
+    super.didChangeDependencies();
   }
 
   @override
@@ -26,7 +30,6 @@ class _GoodsListScreen extends State<GoodsListScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Товары'),
-        leading: Icon(Icons.arrow_back),
       ),
       body: (_productList == null)
           ? const Center(child: CircularProgressIndicator())
@@ -40,8 +43,10 @@ class _GoodsListScreen extends State<GoodsListScreen> {
     );
   }
 
-  Future<void> _loadGoods() async {
-    _productList = await ProductApi().GetProductList();
+
+
+  Future<void> _loadGoodsByCategory(final int categoryId) async {
+    _productList = await ProductApi().GetProductListByCategory(categoryId);
     setState(() {});
   }
 }

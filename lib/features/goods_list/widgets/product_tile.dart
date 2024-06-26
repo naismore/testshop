@@ -14,6 +14,9 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ListTile(
+      leading: product.imageUrl != null
+          ? Image.network(product.imageUrl!)
+          : Image.network('https://via.placeholder.com/200'),
       title: Text(product.title, style: Theme.of(context).textTheme.bodyMedium),
       subtitle: Text(
         product.price.toString() + '\$',

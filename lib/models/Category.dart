@@ -20,7 +20,7 @@ class Category {
       title: json['title'] as String,
       fullName: json['fullName'] as String,
       description: (json['categoryDescription'] as String) ?? '',
-      imageUrl: (json['imageUrl'] as String?) ?? 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg',
+      imageUrl: json['imageUrl'] as String?,
     );
   }
 }
