@@ -3,15 +3,15 @@ import 'package:flutter/foundation.dart';
 class Category {
   const Category({
     required this.id,
-    required this.title,
-    required this.fullName,
-    required this.description,
-    required this.imageUrl,
+    this.title,
+    this.fullName,
+    this.description,
+    this.imageUrl,
   });
   final int id;
-  final String title;
-  final String fullName;
-  final String description;
+  final String? title;
+  final String? fullName;
+  final String? description;
   final String? imageUrl;
 
   factory Category.fromJson(Map<String, dynamic> json) {

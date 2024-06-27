@@ -4,8 +4,3 @@ import 'shop_app.dart';
 void main() {
   runApp(const ShopApp());
 }
-
-
-
-
-

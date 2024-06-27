@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/Product.dart';
+import '../../product/model/Product.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
@@ -11,13 +11,16 @@ class ProductTile extends StatelessWidget {
   final Product product;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     return ListTile(
       leading: product.imageUrl != null
           ? Image.network(product.imageUrl!)
           : Image.network('https://via.placeholder.com/200'),
-      title: Text(product.title, style: Theme.of(context).textTheme.bodyMedium),
+      title: Text(
+          product.title!,
+          style: theme.textTheme.bodyMedium
+      ),
       subtitle: Text(
         product.price.toString() + '\$',
         style: Theme.of(context).textTheme.bodyMedium,

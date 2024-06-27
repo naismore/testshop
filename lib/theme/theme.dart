@@ -12,6 +12,6 @@ final theme = ThemeData(
       color: Colors.grey[900],
       fontWeight: FontWeight.w700,
       fontSize: 15,
-  ),
+    ),
   ),
 );

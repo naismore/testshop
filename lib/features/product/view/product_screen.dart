@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/Product.dart';
+import '../model/Product.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -31,49 +31,50 @@ class _ProductScreen extends State<ProductScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            children: [
-              product!.imageUrl != null
-                  ? Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(product!.imageUrl!), // Display the image if the URL is not null
-                     fit: BoxFit.cover),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ) : Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200], // Display a grey box if the URL is null\
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Center(
-                child: Text('No image'),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                product!.title,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                (product!.description == '')
-                    ? 'Нет описания'
-                    : product!.description,
-                style: const TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ],
+            children: _buildProductBlock,
           ),
         ),
       ),
     );
+  }
+
+  List<Widget> get _buildProductBlock {
+    return [
+      product!.imageUrl != null
+          ? Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(product!.imageUrl!), fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            )
+          : Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text('No image'),
+              ),
+            ),
+      const SizedBox(height: 16),
+      Text(
+        product!.title!,
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      const SizedBox(height: 16),
+      Text(
+        (product!.description == '' || product!.description == null)
+            ? 'Нет описания'
+            : product!.description!,
+        style: const TextStyle(
+          fontSize: 18,
+        ),
+      ),
+    ];
   }
 }
