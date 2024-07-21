@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../../models/BaseApi.dart';
-import 'Product.dart';
+import '../../../models/base_api.dart';
+import 'product.dart';
 
 class ProductApi {
   Future<List<Product>> GetProductList() async {

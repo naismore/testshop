@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import '../../../models/BaseApi.dart';
+import '../../../models/base_api.dart';
 
-import 'Category.dart';
+import 'category.dart';
 
 class CategoryApi {
   Future<List<Category>?> GetCategoryList() async {

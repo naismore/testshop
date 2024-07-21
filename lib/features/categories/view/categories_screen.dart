@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../model/Category.dart';
-import '../model/CategoryApi.dart';
+import '../model/category.dart';
+import '../model/category_api.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
