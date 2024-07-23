@@ -1,31 +1,25 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
-import '../../../models/base_api.dart';
 
+
+import '../../../abstract/base_api.dart';
 import 'category.dart';
 
-class CategoryApi {
-  Future<List<Category>?> GetCategoryList() async {
-    final response = await Dio().get(
-        '${BaseApi().baseApiPath}common/category/list?appKey=${BaseApi().apiKey}');
-    if (response != null) {
-      if (response.statusCode == 200) {
-        final data = response.data['data']['categories'] as List?;
-        if (data != null) {
-          return data.map((categoryJson) {
-            print(categoryJson.toString());
-            return Category.fromJson(categoryJson as Map<String, dynamic>);
-          }).toList();
-        } else {
-          return null;
-        }
-      } else {
-        print('Ошибка: ${response.statusCode}');
-        return null;
-      }
-    } else {
-      print('Ошибка: Нет ответа');
-      return null;
+class CategoryApi{
+  CategoryApi({
+    required this.dio
+  });
+
+  final Dio dio;
+
+  Future<List<Category>?> getCategoryList() async {
+    try {
+      final response = await BaseApi().sendGetRequest('api/common/category/list') as Map<String, dynamic>;
+      final data = response['categories'] as List<dynamic>;
+      List<Category> categoriesList = data.map((item) => Category.fromJson(item)).toList();
+      return categoriesList;
+    } catch (e) {
+      print('Exception $e');
+      return <Category>[];
     }
   }
 }

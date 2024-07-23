@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../product/model/product.dart';
+import '../products_list_routes.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
@@ -24,9 +25,8 @@ class ProductTile extends StatelessWidget {
       ),
       trailing: const Icon(Icons.arrow_forward),
       onTap: () {
-        Navigator.of(context).pushNamed(
-          '/product',
-          arguments: product,
+        Navigator.of(context).push(
+            ProductsListRoutes.productRoute(product)
         );
       },
     );

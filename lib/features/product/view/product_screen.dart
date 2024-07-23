@@ -3,29 +3,20 @@ import 'package:flutter/material.dart';
 import '../model/product.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key});
+  final Product product;
+  const ProductScreen({required this.product, super.key});
 
   @override
   State<ProductScreen> createState() => _ProductScreen();
 }
 
 class _ProductScreen extends State<ProductScreen> {
-  Product? product;
-
-  @override
-  void didChangeDependencies() {
-    final args = ModalRoute.of(context)?.settings.arguments;
-    assert(args != null && args is Product, '');
-    product = args as Product;
-    setState(() {});
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(product!.title ?? '...'),
+        title: Text(widget.product.title ?? '...'),
       ),
       body: Center(
         child: Padding(
@@ -40,13 +31,13 @@ class _ProductScreen extends State<ProductScreen> {
 
   List<Widget> get _buildProductBlock {
     return [
-      product!.imageUrl != null
+      widget.product.imageUrl != null
           ? Container(
               height: 200,
               width: 200,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(product!.imageUrl!), fit: BoxFit.cover),
+                    image: NetworkImage(widget.product.imageUrl!), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(10),
               ),
             )
@@ -63,14 +54,14 @@ class _ProductScreen extends State<ProductScreen> {
             ),
       const SizedBox(height: 16),
       Text(
-        product!.title!,
+        widget.product.title!,
         style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       const SizedBox(height: 16),
       Text(
-        (product!.description == '' || product!.description == null)
+        (widget.product.description == '' || widget.product.description == null)
             ? 'Нет описания'
-            : product!.description!,
+            : widget.product.description!,
         style: const TextStyle(
           fontSize: 18,
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'router/router.dart';
+import 'features/categories/view/categories_screen.dart';
 import 'theme/theme.dart';
 
 class ShopApp extends StatelessWidget {
@@ -11,8 +11,7 @@ class ShopApp extends StatelessWidget {
     return MaterialApp(
       title: 'TestShop',
       theme: theme,
-      routes: routes,
-      //initialRoute: '/goods-list',
+      home: const CategoriesScreen(),
     );
   }
 }
