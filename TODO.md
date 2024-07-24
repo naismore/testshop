@@ -122,20 +122,11 @@ BasePageState вынести appbar, lead, action, scaffold
 
 Для списков вынести в базовый дублирование 
 ```dart
-      BlocBuilder<ProductsListBloc, ProductsListState>(
-        bloc: _productsListBloc,
-        builder: (context, state) {
-          if (state is ProductsListLoaded) {
-            return ListView.separated(
-                itemCount: state.productsList!.length,
-                separatorBuilder: (final context,
-                    final index) => const Divider(),
-                itemBuilder: buildListItem()
-            );
-          }
-          return const CircularProgressIndicator();
-        },
-      )
+       ListView.separated(
+            itemCount: state.productsList!.length,
+            separatorBuilder: (final context, final index) => const Divider(),
+            itemBuilder: buildListItem(context, index)
+        );
 ```
 
 На экране оставить ProductTile(product: product);
@@ -143,9 +134,7 @@ BasePageState вынести appbar, lead, action, scaffold
 ```dart
   @override
   Widget buildListItemImpl(BuildContext context, int index) {
-    return ProductTile(
-      product: product,
-    );
+    return ProductTile(product: product);
   }
   ```
 
