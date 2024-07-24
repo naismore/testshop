@@ -11,10 +11,10 @@ class Category {
   final String? imageUrl;
   Category(
       {required this.id,
-        required this.title,
-        required this.fullName,
-        required this.description,
-        this.imageUrl});
-  factory Category.fromJson(Map<String,dynamic> json) =>
+      required this.title,
+      required this.fullName,
+      required this.description,
+      this.imageUrl});
+  factory Category.fromJson(Map<String, dynamic> json) =>
       _$CategoryFromJson(json);
 }

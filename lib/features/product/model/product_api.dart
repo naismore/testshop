@@ -1,26 +1,28 @@
 import 'package:dio/dio.dart';
 
-import '../../../abstract/base_api.dart';
+import '../../../models/base_api.dart';
 import 'product.dart';
 
 class ProductApi {
-  Future<List<Product>> GetProductList() async {
-    final response = await Dio().get(
-        'http://onlinestore.whitetigersoft.ru/api/common/product/list?appKey=EyZ6DhtHN24DjRJofNZ7BijpNsAZ-TT1is4WbJb9DB7m83rNQCZ7US0LyUg5FCP4eoyUZXmM1z45hY5fIC-JTCgmqHgnfcevkQQpmxi8biwwlSn0zZedvlNh0QkP1-Um');
-    final data = response.data['data'] as List;
-    print(data.toString());
+  ProductApi({
+    required this.dio
+  });
 
-    return data.map((productJson) {
-      print(productJson.toString());
-      return Product.fromJson(productJson as Map<String, dynamic>);
-    }).toList();
+  final Dio dio;
+
+  Future<List<Product>> GetProductList() async {
+    final response = await BaseApi().sendGetRequest(
+        'api/common/product/list') as List<dynamic>;
+    List<Product> productsList = response.map((item) => Product.fromJson(item)).toList();
+    return productsList;
   }
 
   Future<List<Product>> GetProductListByCategory(int categoryId) async {
-    final response = await Dio().get(
-        'http://onlinestore.whitetigersoft.ru/api/common/product/list?categoryId=${categoryId}&appKey=EyZ6DhtHN24DjRJofNZ7BijpNsAZ-TT1is4WbJb9DB7m83rNQCZ7US0LyUg5FCP4eoyUZXmM1z45hY5fIC-JTCgmqHgnfcevkQQpmxi8biwwlSn0zZedvlNh0QkP1-Um');
-    final data = response.data['data'] as List<dynamic>;
-    final productsList = data.map((item) => Product.fromJson(item)).toList();
+    Map<String, dynamic>? queryParams;
+    queryParams?['categoryId'] = categoryId;
+    final response = await BaseApi().sendGetRequest(
+        'api/common/product/list', queryParameters: queryParams) as List<dynamic>;
+    final productsList = response.map((item) => Product.fromJson(item)).toList();
     return productsList;
   }
 }

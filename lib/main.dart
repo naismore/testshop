@@ -7,6 +7,6 @@ import 'shop_app.dart';
 
 void main() {
   GetIt.I.registerLazySingleton(() => CategoryApi(dio: Dio()));
-  GetIt.I.registerLazySingleton(() => ProductApi());
+  GetIt.I.registerLazySingleton(() => ProductApi(dio: Dio()));
   runApp(const ShopApp());
 }

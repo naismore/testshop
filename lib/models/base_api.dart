@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import '../models/base_api_response.dart';
 
 class BaseApi {
   final String apiKey =
@@ -46,21 +45,4 @@ class BaseApi {
       return [];
     }
   }
-
-  // Future<List<dynamic>> sendGetRequest({
-  // required final String path,
-  // Map<String, dynamic>? queryParams
-  // }) async {
-  //   queryParams ??= {};
-  //   queryParams['appKey'] = apiKey;
-  //   var uri = buildUri(relativePath: path, queryParams: queryParams);
-  //   final String sUri = uri.toString();
-  //   final response = await dio.get(uri.toString(), queryParameters: queryParams) as Map<String, dynamic>;
-  //
-  //   if(response['meta']['success']){
-  //     return response['data'];
-  //   }
-  //   return [];
-  // }
-
 }

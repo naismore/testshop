@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../model/product.dart';
@@ -31,27 +32,26 @@ class _ProductScreen extends State<ProductScreen> {
 
   List<Widget> get _buildProductBlock {
     return [
-      widget.product.imageUrl != null
-          ? Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(widget.product.imageUrl!), fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            )
-          : Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
+      ExtendedImage(
+        image: widget.product.imageUrl != null
+            ? ExtendedNetworkImageProvider(widget.product.imageUrl!)
+            : const NetworkImage('https://via.placeholder.com/200'),
+        height: 200,
+        width: 200,
+        borderRadius: BorderRadius.circular(10),
+        loadStateChanged: (ExtendedImageState state) {
+          if (state.extendedImageLoadState == LoadState.failed) {
+            return Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Center(
-                child: Text('No image'),
-              ),
-            ),
+            );
+          }
+        },
+      ),
       const SizedBox(height: 16),
       Text(
         widget.product.title!,

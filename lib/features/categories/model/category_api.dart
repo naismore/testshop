@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 
-import '../../../abstract/base_api.dart';
+import '../../../models/base_api.dart';
 import 'category.dart';
 
 class CategoryApi{
