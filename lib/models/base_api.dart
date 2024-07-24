@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 
 class BaseApi {
+  // TODO: Вынести в конфиг
   final String apiKey =
       'EyZ6DhtHN24DjRJofNZ7BijpNsAZ-TT1is4WbJb9DB7m83rNQCZ7US0LyUg5FCP4eoyUZXmM1z45hY5fIC-JTCgmqHgnfcevkQQpmxi8biwwlSn0zZedvlNh0QkP1-Um';
   final String apiUrlDomain = 'onlinestore.whitetigersoft.ru';
 
-  late final dio = Dio();
+  late final Dio dio = Dio();
 
   Uri buildUri({
     required String relativePath,
@@ -18,11 +19,10 @@ class BaseApi {
     );
   }
 
-
   Future<dynamic> sendGetRequest(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-      }) async {
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     var uri = buildUri(
       relativePath: path,
       queryParameters: queryParameters,

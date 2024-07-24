@@ -1,16 +1,11 @@
 import 'dart:async';
 
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_1/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../bloc/categories_bloc.dart';
 import '../categories_routes.dart';
-import '../model/category.dart';
 import '../model/category_api.dart';
 
 part '../widgets/grid_view_tile.dart';
@@ -23,7 +18,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreen extends State<CategoriesScreen> {
-  final _categoriesBloc = CategoriesBloc(GetIt.I<CategoryApi>());
+  final CategoriesBloc _categoriesBloc = CategoriesBloc(GetIt.I<CategoryApi>());
 
   @override
   void initState() {
@@ -66,5 +61,10 @@ class _CategoriesScreen extends State<CategoriesScreen> {
             },
           ),
         ));
+  }
+
+  @override
+  Widget buildBody(BuildContext context, CategoryLoaded state) {
+    return _buildGridView(state, context);
   }
 }

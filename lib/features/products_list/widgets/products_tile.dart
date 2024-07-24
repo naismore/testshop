@@ -15,6 +15,7 @@ class ProductTile extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     return ListTile(
+      // TODO: Вынести сделать на ExtendedImage.network
       leading: FadeInImage(
         placeholder: const NetworkImage('https://via.placeholder.com/200'),
         image: NetworkImage(product.imageUrl!),
@@ -22,7 +23,7 @@ class ProductTile extends StatelessWidget {
       ),
       title: Text(product.title!, style: theme.textTheme.bodyMedium),
       subtitle: Text(
-        product.price.toString() + '\$',
+        '${product.price}\$',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       trailing: const Icon(Icons.arrow_forward),
