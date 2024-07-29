@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../product/model/product.dart';
@@ -16,11 +17,15 @@ class ProductTile extends StatelessWidget {
     final theme = Theme.of(context);
     return ListTile(
       // TODO: Вынести сделать на ExtendedImage.network
-      leading: FadeInImage(
-        placeholder: const NetworkImage('https://via.placeholder.com/200'),
-        image: NetworkImage(product.imageUrl!),
-        fit: BoxFit.cover,
+      leading: ExtendedImage.network(
+        product.imageUrl!,
+        
       ),
+      // FadeInImage(
+      //   placeholder: const NetworkImage('https://via.placeholder.com/200'),
+      //   image: NetworkImage(product.imageUrl!),
+      //   fit: BoxFit.cover,
+      // ),
       title: Text(product.title!, style: theme.textTheme.bodyMedium),
       subtitle: Text(
         '${product.price}\$',

@@ -50,6 +50,7 @@ class _ProductScreen extends State<ProductScreen> {
               ),
             );
           }
+          return null;
         },
       ),
       const SizedBox(height: 16),

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 
 
 import '../../../models/base_api.dart';
@@ -18,7 +20,7 @@ class CategoryApi{
       List<Category> categoriesList = data.map((item) => Category.fromJson(item)).toList();
       return categoriesList;
     } catch (e) {
-      print('Exception $e');
+      GetIt.I<Logger>().e('Error log', error: e);
       return <Category>[];
     }
   }

@@ -22,12 +22,12 @@ class _CategoriesScreen extends State<CategoriesScreen> {
 
   @override
   void initState() {
+    super.initState();
     _categoriesBloc.add(LoadCategories());
   }
 
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -63,7 +63,6 @@ class _CategoriesScreen extends State<CategoriesScreen> {
         ));
   }
 
-  @override
   Widget buildBody(BuildContext context, CategoryLoaded state) {
     return _buildGridView(state, context);
   }

@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
+import '../config.dart';
 
 class BaseApi {
-  // TODO: Вынести в конфиг
-  final String apiKey =
-      'EyZ6DhtHN24DjRJofNZ7BijpNsAZ-TT1is4WbJb9DB7m83rNQCZ7US0LyUg5FCP4eoyUZXmM1z45hY5fIC-JTCgmqHgnfcevkQQpmxi8biwwlSn0zZedvlNh0QkP1-Um';
-  final String apiUrlDomain = 'onlinestore.whitetigersoft.ru';
-
   late final Dio dio = Dio();
 
   Uri buildUri({
@@ -13,7 +11,7 @@ class BaseApi {
     Map<String, dynamic>? queryParameters,
   }) {
     return Uri.http(
-      apiUrlDomain,
+      Config.apiUrlDomain,
       relativePath,
       queryParameters,
     );
@@ -28,7 +26,7 @@ class BaseApi {
       queryParameters: queryParameters,
     );
     queryParameters ??= {};
-    queryParameters['appKey'] = apiKey;
+    queryParameters['appKey'] = Config.apiKey;
     try {
       final response = await dio.get(
         uri.toString(),
@@ -41,7 +39,7 @@ class BaseApi {
       }
       return [];
     } catch (e) {
-      print('Exception: $e');
+      GetIt.I<Logger>().e('Error log', error: e);
       return [];
     }
   }
