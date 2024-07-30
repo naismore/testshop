@@ -7,6 +7,4 @@ class LoadCategories extends CategoriesEvent {
     this.completer
   });
   final Completer? completer;
-
-
 }

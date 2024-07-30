@@ -45,18 +45,7 @@ class _CategoriesScreen extends State<CategoriesScreen> {
               if (state is CategoryLoaded) {
                 return _buildGridView(state, context);
               }
-              if (state is CategoryLoadingFailure) {
-                return const Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Something went wrong',
-                    ),
-                  ],
-                ));
-              }
+              if (state is CategoryLoadingFailure) {}
               return const CircularProgressIndicator();
             },
           ),

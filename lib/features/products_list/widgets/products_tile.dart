@@ -1,5 +1,6 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../product/model/product.dart';
 import '../products_list_routes.dart';
@@ -17,10 +18,7 @@ class ProductTile extends StatelessWidget {
     final theme = Theme.of(context);
     return ListTile(
       // TODO: Вынести сделать на ExtendedImage.network
-      leading: ExtendedImage.network(
-        product.imageUrl!,
-        
-      ),
+      leading: SvgPicture.asset('placeholder.svg'),
       // FadeInImage(
       //   placeholder: const NetworkImage('https://via.placeholder.com/200'),
       //   image: NetworkImage(product.imageUrl!),
