@@ -1,6 +1,6 @@
 part of '../view/categories_screen.dart';
 
-GridView _buildGridView(CategoryLoaded state, BuildContext context) {
+GridView _buildGridView(BuildContext context, BaseBlocState state) {
   //TODO: GridView.builder
 
   return GridView.extent(
@@ -9,7 +9,7 @@ GridView _buildGridView(CategoryLoaded state, BuildContext context) {
     mainAxisSpacing: 4,
     crossAxisSpacing: 4,
     children: List.generate(
-      state.categoriesList!.length,
+      context.categoriesList.length,
       (i) => InkWell(
         onTap: () => Navigator.of(context).push(
           CategoriesRoutes.goodsListRoute(state.categoriesList![i].id),

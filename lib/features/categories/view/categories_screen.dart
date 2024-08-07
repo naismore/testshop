@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_1/abstract/bloc/base_bloc.dart';
+import 'package:flutter_1/abstract/bloc/base_bloc_builder.dart';
+import 'package:flutter_1/features/categories/model/category.dart';
 import 'package:get_it/get_it.dart';
 
 import '../bloc/categories_bloc.dart';
@@ -29,30 +31,25 @@ class _CategoriesScreen extends State<CategoriesScreen> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text('Категории'),
-        ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            final completer = Completer();
-            _categoriesBloc.add(LoadCategories(completer: completer));
-            return completer.future;
-          },
-          child: BlocBuilder<CategoriesBloc, CategoriesState>(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text('Категории'),
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          final completer = Completer();
+          _categoriesBloc.add(LoadCategories(completer: completer));
+          return completer.future;
+        },
+        child: BaseBlocBuilder<CategoriesBloc, List<Category>>(
             bloc: _categoriesBloc,
-            builder: (context, state) {
-              if (state is CategoryLoaded) {
-                return _buildGridView(state, context);
-              }
-              if (state is CategoryLoadingFailure) {}
-              return const CircularProgressIndicator();
+            buildContent: (context, state) {
+              var category = state.data?[index];
+              return _buildGridView(context, state, category);
             },
-          ),
-        ));
-  }
-
-  Widget buildBody(BuildContext context, CategoryLoaded state) {
-    return _buildGridView(state, context);
+            onLoadingFailurePressed: () =>
+                _categoriesBloc.add(LoadCategories())),
+      ),
+    );
   }
 }

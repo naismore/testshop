@@ -12,7 +12,6 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreen extends State<ProductScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +41,9 @@ class _ProductScreen extends State<ProductScreen> {
         loadStateChanged: (ExtendedImageState state) {
           if (state.extendedImageLoadState == LoadState.failed) {
             return Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10),
               ),
