@@ -17,7 +17,7 @@ class _ProductScreen extends State<ProductScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.product.title ?? '...'),
-      ),s
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
