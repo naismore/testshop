@@ -1,27 +1,23 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_1/models/api_response.dart';
+import 'package:flutter_1/models/api_response_parser.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
-
 
 import '../../../models/base_api.dart';
 import 'category.dart';
 
-class CategoryApi{
-  CategoryApi({
-    required this.dio
-  });
+class CategoryApi {
+  CategoryApi({required this.dio});
 
   final Dio dio;
 
-  Future<List<Category>?> getCategoryList() async {
-    try {
-      final response = await BaseApi().sendGetRequest('api/common/category/list') as Map<String, dynamic>;
-      final data = response['categories'] as List<dynamic>;
-      List<Category> categoriesList = data.map((item) => Category.fromJson(item)).toList();
-      return categoriesList;
-    } catch (e) {
-      GetIt.I<Logger>().e('Error log', error: e);
-      return <Category>[];
-    }
+  Future<ApiResponse<List<Category>>> getCategoryList() async {
+    final response = await BaseApi().sendGetRequest('api/common/category/list');
+
+    return ApiResponseParser.parseListFromResponse(response,
+        key: 'categories',
+        fromJson: Category.fromJson,
+        emptyError: 'Не удалось получить данные');
   }
 }

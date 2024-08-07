@@ -31,9 +31,7 @@ class ProductTile extends StatelessWidget {
       ),
       trailing: const Icon(Icons.arrow_forward),
       onTap: () {
-        Navigator.of(context).push(
-            ProductsListRoutes.productRoute(product)
-        );
+        Navigator.of(context).push(ProductsListRoutes.productRoute(product));
       },
     );
   }

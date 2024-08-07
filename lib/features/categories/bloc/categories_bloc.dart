@@ -1,30 +1,25 @@
 import 'dart:async';
 
+import 'package:flutter_1/abstract/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../model/category.dart';
 import '../model/category_api.dart';
 
 part 'categories_event.dart';
-part 'categories_state.dart';
 
-class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
-  CategoriesBloc(this.categoryApi) : super(CategoriesInitial()) {
-    on<LoadCategories>((event, emit) async {
-      try {
-        if(state is! CategoryLoaded) {
-            emit(CategoriesLoading());
-        }
-        final categoriesList = await categoryApi.getCategoryList();
-        emit(CategoryLoaded(categoriesList: categoriesList));
-      } catch (e) {
-        emit(CategoryLoadingFailure(exception: e));
-      }
-      finally {
-        event.completer?.complete();
-      }
-    });
+class CategoriesBloc
+    extends BaseBloc<CategoriesEvent, BaseBlocState, Category> {
+  final CategoryApi categoryApi;
+
+  CategoriesBloc(this.categoryApi) : super(const InitialState()) {
+    on<LoadCategories>(_onLoadCategories);
   }
 
-  final CategoryApi categoryApi;
+  Future<void> _onLoadCategories(
+      LoadCategories event, Emitter<BaseBlocState> emit) async {
+    final response = await categoryApi.getCategoryList();
+    emit(DataFoundState(data: response!));
+    event.completer?.complete();
+  }
 }
