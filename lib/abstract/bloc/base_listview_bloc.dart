@@ -31,8 +31,8 @@ abstract class BaseListViewBloc<T>
       emit(ErrorState(message: response.error!));
       return;
     }
-    loadedData.addAll(response.data!);
-    isAllLoaded = response.data!.isEmpty;
+    loadedData.addAll(response.result!);
+    isAllLoaded = response.result!.isEmpty;
     isLoading = false;
     emit(DataFoundState(data: loadedData));
     event.completer?.complete();

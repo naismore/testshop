@@ -9,8 +9,11 @@ part 'widgets/product_block.dart';
 
 class ProductScreen extends BasePage {
   final Product product;
-  ProductScreen({required this.product, super.key})
-      : super(title: product.title);
+
+  ProductScreen({
+    required this.product,
+    super.key,
+  }) : super(title: product.title);
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();

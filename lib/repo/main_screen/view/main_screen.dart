@@ -15,6 +15,9 @@ class MainScreen extends BasePage {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+// TODO: MainBloc добавить, вынести в него CategoryBloc и ProductListBloc. В MainBloc грузить оба блока
+// TODO: main_screen вынести в отдульный модули продукты и категории
+// TODO: избавиться от лишнего вынесения
 class _MainScreenState extends BasePageState<MainScreen> {
   final _categoryBloc = CategoryBloc(GetIt.I<CategoryApi>());
 
@@ -26,11 +29,15 @@ class _MainScreenState extends BasePageState<MainScreen> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Column(
-      children: [
-        buildCategoriesBlock(context, _categoryBloc),
-        buildAllGoodsTextBlock(context),
-        buildAllGoodsBlock(context),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: buildCategoriesBlock(context, _categoryBloc),
+        ),
+        SliverToBoxAdapter(
+          child: buildAllGoodsTextBlock(context),
+        ),
+        buildAllGoodsBlock(context)
       ],
     );
   }
