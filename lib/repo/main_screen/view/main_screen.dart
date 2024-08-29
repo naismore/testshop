@@ -35,5 +35,3 @@ class _MainScreenState extends BasePageState<MainScreen> {
     );
   }
 }
-
-class Get {}
