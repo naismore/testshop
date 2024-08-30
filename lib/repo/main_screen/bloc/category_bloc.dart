@@ -13,7 +13,9 @@ class CategoryBloc extends BaseBloc<CategoryEvent, BaseBlocState, Category> {
   }
 
   Future<void> _onLoadCategory(
-      LoadCategory event, Emitter<BaseBlocState> emit) async {
+    LoadCategory event,
+    Emitter<BaseBlocState> emit,
+  ) async {
     final response = await categoryApi.getCategoryList();
     emit(DataFoundState(data: response));
     event.completer?.complete();

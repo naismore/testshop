@@ -6,6 +6,7 @@ Widget buildCategoriesGridView(BuildContext context, DataFoundState state) {
   return GridView.builder(
     scrollDirection: Axis.horizontal,
     itemCount: state.data.length,
+    physics: NeverScrollableScrollPhysics(),
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 1,
       crossAxisSpacing: 6.0,

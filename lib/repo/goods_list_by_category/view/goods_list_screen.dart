@@ -4,8 +4,10 @@ import 'package:flutter_app/models/category/category.dart';
 import 'package:flutter_app/repo/goods_list_by_category/bloc/goods_list_screen.dart';
 
 class GoodsListScreen extends BaseListViewPage {
-  GoodsListScreen({super.key, required this.category})
-      : super(title: category.title);
+  GoodsListScreen({
+    super.key,
+    required this.category,
+  }) : super(title: category.title);
 
   final Category category;
 
@@ -15,6 +17,7 @@ class GoodsListScreen extends BaseListViewPage {
 
 class _GoodsListScreenState
     extends BaseListViewPageState<GoodsListScreen, GoodsListScreenBloc> {
+  // TODO: лучше указать явно false|true
   @override
   bool get shouldBeSeparated => !super.shouldBeSeparated;
 

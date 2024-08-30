@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/repo/main_screen/view/widgets/all_goods/all_goods_tile.dart';
 
 Widget buildAllGoodsGridView(BuildContext context) {
-  return GridView.builder(
+  return SliverGrid.builder(
     itemCount: 10,
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
